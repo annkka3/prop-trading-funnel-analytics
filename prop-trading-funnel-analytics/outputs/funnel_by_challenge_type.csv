@@ -1,0 +1,5 @@
+challenge_type,challenges,avg_price_usd,avg_account_size,phase_1_pass_rate_pct,phase_2_pass_rate_pct,funded_rate_pct,payout_rate_pct,revenue_usd,payout_exposure_usd,gross_profit_proxy_usd,payout_exposure_to_fee_ratio,value_rank,exposure_rank
+standard,911,287.87,53622.0,46.87,60.89,28.54,52.31,262249.0,223497.99,38751.01,0.852,2,2
+low_cost_trial,693,43.65,13485.0,22.51,35.9,8.08,42.86,30247.0,4757.28,25489.72,0.157,3,4
+aggressive,576,348.51,56944.0,32.81,46.03,15.1,52.87,200744.0,118246.87,82497.13,0.589,1,3
+swing,496,568.15,103831.0,60.08,59.4,35.69,54.24,281804.0,348666.88,-66862.88,1.237,4,1

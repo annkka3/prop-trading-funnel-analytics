@@ -1,0 +1,24 @@
+segment_name,acquisition_channel,prior_trading_experience,registrations,purchasing_users,challenges,phase_1_passed,funded_challenges,approved_payout_challenges,registration_to_purchase_pct,challenge_to_funded_pct,funded_to_payout_pct,revenue_usd,payout_exposure_usd,gross_profit_proxy_usd,avg_daily_sessions,avg_trade_duration_minutes,avg_risk_per_trade_pct,avg_win_rate,avg_rr,avg_max_drawdown_pct,avg_rule_violations_count,avg_inactivity_days_after_purchase,misleading_top_funnel_flag,value_rank
+paid_social | beginner,paid_social,beginner,1835,144,161,33,10,4,7.85,6.21,40.0,36919.0,2601.13,34317.87,1.4,28.46,0.92,0.405,0.99,6.25,1.25,9.31,0,1
+affiliates | beginner,affiliates,beginner,1106,109,150,28,5,4,9.86,3.33,80.0,33200.0,3050.98,30149.02,1.39,28.8,0.9,0.425,1.02,6.07,1.33,8.6,0,2
+organic | beginner,organic,beginner,1169,117,149,35,15,6,10.01,10.07,40.0,29451.0,5336.57,24114.43,1.49,31.0,0.86,0.421,1.05,5.46,1.14,8.44,0,3
+influencers | beginner,influencers,beginner,792,70,94,16,0,0,8.84,0.0,,22816.0,0.0,22816.0,1.27,26.84,0.97,0.414,1.0,6.53,1.37,9.41,0,4
+organic | intermediate,organic,intermediate,1034,147,163,78,41,21,14.22,25.15,51.22,51597.0,30469.19,21127.81,1.49,34.56,0.74,0.459,1.14,4.39,0.85,6.93,0,5
+affiliates | intermediate,affiliates,intermediate,927,118,149,49,28,12,12.73,18.79,42.86,42161.0,22360.22,19800.78,1.46,33.08,0.85,0.449,1.15,4.88,1.09,6.9,0,6
+paid_social | intermediate,paid_social,intermediate,1045,99,127,42,20,7,9.47,15.75,35.0,35253.0,15495.27,19757.73,1.35,32.34,0.85,0.453,1.14,4.88,1.02,8.71,0,7
+direct | beginner,direct,beginner,426,76,87,23,5,2,17.84,5.75,40.0,23153.0,3680.31,19472.69,1.62,33.75,0.82,0.42,1.05,5.07,0.83,6.96,0,8
+paid_social | none,paid_social,none,1355,86,106,9,0,0,6.35,0.0,,18344.0,0.0,18344.0,1.3,22.03,1.1,0.369,0.82,7.11,1.47,10.84,0,9
+community | beginner,community,beginner,598,85,107,28,12,5,14.21,11.21,41.67,23543.0,5980.8,17562.2,1.62,33.83,0.79,0.425,1.01,4.99,0.95,8.11,0,10
+influencers | intermediate,influencers,intermediate,510,55,73,22,7,3,10.78,9.59,42.86,20597.0,3759.18,16837.82,1.29,30.15,0.9,0.444,1.08,5.57,1.33,8.44,0,11
+organic | none,organic,none,600,62,76,8,3,0,10.33,3.95,0.0,15834.0,0.0,15834.0,1.41,26.98,0.95,0.385,0.89,6.53,1.26,8.92,0,12
+influencers | none,influencers,none,633,40,55,4,0,0,6.32,0.0,,10285.0,0.0,10285.0,1.29,22.24,1.04,0.385,0.87,7.31,1.43,10.35,0,13
+affiliates | none,affiliates,none,677,49,56,4,1,1,7.24,1.79,100.0,10964.0,1572.02,9391.98,1.45,24.37,1.03,0.362,0.86,6.74,1.49,9.88,0,14
+community | none,community,none,284,33,45,7,0,0,11.62,0.0,,8495.0,0.0,8495.0,1.5,29.52,0.89,0.384,0.93,5.9,1.24,8.45,0,15
+influencers | advanced,influencers,advanced,198,21,27,11,5,4,10.61,18.52,80.0,8203.0,3846.27,4356.73,1.48,32.25,0.91,0.483,1.2,4.9,1.0,6.38,0,16
+direct | intermediate,direct,intermediate,732,148,173,93,51,31,20.22,29.48,60.78,57577.0,67053.01,-9476.01,1.65,40.08,0.68,0.468,1.19,3.67,0.63,6.3,1,17
+paid_social | advanced,paid_social,advanced,453,52,56,30,19,8,11.48,33.93,42.11,20164.0,31259.28,-11095.28,1.55,40.99,0.7,0.494,1.29,4.41,1.04,7.52,0,18
+affiliates | advanced,affiliates,advanced,540,89,107,66,38,21,16.48,35.51,55.26,42453.0,57693.55,-15240.55,1.52,40.73,0.7,0.489,1.26,4.23,0.85,6.78,1,19
+community | intermediate,community,intermediate,857,167,194,120,77,34,19.49,39.69,44.16,63876.0,84978.37,-21102.37,1.62,39.77,0.71,0.477,1.21,4.01,0.81,6.32,1,20
+organic | advanced,organic,advanced,675,118,133,90,65,31,17.48,48.87,47.69,53217.0,89101.0,-35884.0,1.58,43.7,0.6,0.501,1.3,3.61,0.65,5.78,1,21
+direct | advanced,direct,advanced,607,160,177,132,90,50,26.36,50.85,55.56,66523.0,105911.73,-39388.73,1.7,46.19,0.59,0.508,1.32,3.26,0.49,5.56,1,22
+community | advanced,community,advanced,770,169,188,138,87,57,21.95,46.28,65.52,74912.0,158864.57,-83952.57,1.66,46.96,0.57,0.503,1.31,3.24,0.52,5.59,1,23

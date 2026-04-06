@@ -1,0 +1,9 @@
+stage_order,stage_name,stage_grain,entity_count,conversion_from_previous_pct,conversion_from_registered_pct
+1,Registered,user,18000,,100.0
+2,KYC Started,user,10894,60.52,60.52
+3,KYC Verified,user,8566,78.63,47.59
+4,Purchased Challenge,user,2232,26.06,12.4
+5,Passed Phase 1,challenge,1070,47.94,5.94
+6,Passed Phase 2,challenge,580,54.21,3.22
+7,Funded,challenge,580,100.0,3.22
+8,Approved Payout,challenge,302,52.07,1.68

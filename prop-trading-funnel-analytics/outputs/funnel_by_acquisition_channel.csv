@@ -1,0 +1,7 @@
+acquisition_channel,registrations,kyc_verified_users,purchasing_users,challenges,phase_1_passed,phase_2_passed,funded_challenges,approved_payout_challenges,registration_to_kyc_verified_pct,registration_to_purchase_pct,purchase_to_funded_pct,funded_to_payout_pct,challenge_to_payout_pct,revenue_usd,payout_exposure_usd,gross_profit_proxy_usd,payout_exposure_to_fee_ratio
+paid_social,4688,1984,381,450,114,49,49.0,19.0,42.32,8.13,10.89,38.78,4.22,110680.0,49355.68,61324.32,0.446
+organic,3478,1693,444,521,211,124,124.0,58.0,48.68,12.77,23.8,46.77,11.13,150099.0,124906.76,25192.24,0.832
+affiliates,3250,1519,365,462,147,72,72.0,38.0,46.74,11.23,15.58,52.78,8.23,128778.0,84676.77,44101.23,0.658
+community,2509,1380,454,534,293,176,176.0,96.0,55.0,18.09,32.96,54.55,17.98,170826.0,249823.74,-78997.74,1.462
+influencers,2133,857,186,249,53,12,12.0,7.0,40.18,8.72,4.82,58.33,2.81,61901.0,7605.45,54295.55,0.123
+direct,1942,1133,402,460,252,147,147.0,84.0,58.34,20.7,31.96,57.14,18.26,152760.0,178800.62,-26040.62,1.17

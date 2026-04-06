@@ -1,0 +1,13 @@
+segment_name,acquisition_channel,prior_trading_experience,funded_challenges,approved_payout_challenges,payout_request_challenges,payout_rate_pct,avg_fee_usd,avg_account_size,avg_payout_requests,approved_payout_usd,payout_exposure_usd,exposure_per_funded_challenge_usd,under_review_share_pct,exposure_rank,payout_rate_rank
+community | advanced,community,advanced,87,57,64,65.52,453.02,84368.0,0.94,145352.37,158864.57,1826.03,6.9,1,1
+direct | advanced,direct,advanced,90,50,58,55.56,381.33,70111.0,0.74,92655.46,105911.73,1176.8,7.78,2,3
+organic | advanced,organic,advanced,65,31,35,47.69,421.0,77615.0,0.77,76840.96,89101.0,1370.78,10.77,3,6
+community | intermediate,community,intermediate,77,34,41,44.16,359.52,64870.0,0.77,69565.51,84978.37,1103.62,14.29,4,7
+direct | intermediate,direct,intermediate,51,31,34,60.78,348.22,62843.0,0.94,58396.25,67053.01,1314.76,11.76,5,2
+affiliates | advanced,affiliates,advanced,38,21,23,55.26,386.37,71184.0,0.82,50555.29,57693.55,1518.25,10.53,6,4
+paid_social | advanced,paid_social,advanced,19,8,12,42.11,403.74,75263.0,1.0,13519.81,31259.28,1645.23,31.58,7,9
+organic | intermediate,organic,intermediate,41,21,23,51.22,311.44,56707.0,0.83,28107.92,30469.19,743.15,2.44,8,5
+affiliates | intermediate,affiliates,intermediate,28,12,13,42.86,289.36,51607.0,0.68,20292.66,22360.22,798.58,7.14,9,8
+paid_social | intermediate,paid_social,intermediate,20,7,9,35.0,243.5,43500.0,0.7,9070.74,15495.27,774.76,15.0,10,12
+community | beginner,community,beginner,12,5,6,41.67,342.33,62083.0,0.67,5424.67,5980.8,498.4,16.67,11,10
+organic | beginner,organic,beginner,15,6,7,40.0,247.67,44667.0,0.53,4580.27,5336.57,355.77,6.67,12,11
