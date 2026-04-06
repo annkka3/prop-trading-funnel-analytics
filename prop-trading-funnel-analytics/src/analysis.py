@@ -52,6 +52,7 @@ def load_data() -> dict[str, pd.DataFrame]:
             parse_dates=["registration_month"],
         ),
         "trader_segment_comparison": pd.read_csv(OUTPUT_DIR / "trader_segment_comparison.csv"),
+        "stage_timing": pd.read_csv(OUTPUT_DIR / "stage_timing.csv"),
     }
 
 
@@ -181,7 +182,7 @@ def create_acquisition_conversion_chart(channel_funnel: pd.DataFrame) -> None:
     ax.text(
         0.01,
         0.02,
-        "Bars show conversion. The black line makes the business trade-off explicit: high-quality trader channels can still be margin-negative once payout exposure is included.",
+        "Conversion rates (bars) and unit economics (line) often point in opposite directions. The channels with the strongest trader quality are not the same ones with the best gross profit proxy.",
         transform=ax.transAxes,
         fontsize=9,
         color="#333333",
@@ -314,7 +315,7 @@ def create_payout_exposure_chart(funded_payout: pd.DataFrame) -> None:
     ax.text(
         0.01,
         0.02,
-        "High-value funded segments can still be the main source of payout liability, which is why conversion and exposure should be monitored together.",
+        "Top segments by funded conversion are often the same segments with the highest payout exposure. These two metrics need to be read together.",
         transform=ax.transAxes,
         fontsize=9,
         color="#333333",
@@ -400,6 +401,65 @@ def create_behavior_outcome_chart(user_outcomes: pd.DataFrame, rng_seed: int = 2
     plt.close(fig)
 
 
+def create_stage_timing_chart(timing: pd.DataFrame) -> None:
+    row = timing.iloc[0]
+
+    stages = [
+        "Reg → KYC",
+        "KYC → Purchase",
+        "Purchase → Phase 1\n(pass)",
+        "Purchase → Phase 1\n(fail)",
+        "Phase 1 → Phase 2\n(pass)",
+        "Phase 1 → Phase 2\n(fail)",
+        "Funded → Payout",
+    ]
+    medians = [
+        row["reg_to_kyc_median_days"],
+        row["kyc_to_purchase_median_days"],
+        row["phase1_pass_median_days"],
+        row["phase1_fail_median_days"],
+        row["phase2_pass_median_days"],
+        row["phase2_fail_median_days"],
+        row["funded_to_payout_median_days"],
+    ]
+    colors = [
+        "#2A9D8F", "#4C78A8",
+        "#54A24B", "#E76F51",
+        "#54A24B", "#E76F51",
+        "#6D597A",
+    ]
+
+    fig, ax = plt.subplots(figsize=(13, 6))
+    bars = ax.barh(stages, medians, color=colors, alpha=0.90, edgecolor="white", linewidth=0.8)
+
+    for bar, val in zip(bars, medians):
+        ax.text(
+            bar.get_width() + 0.3,
+            bar.get_y() + bar.get_height() / 2,
+            f"{val:.0f}d",
+            va="center",
+            fontsize=9,
+        )
+
+    ax.set_title("Median Days Between Funnel Stages")
+    ax.set_xlabel("Median calendar days")
+    ax.set_xlim(0, max(medians) * 1.18)
+    style_axes(ax)
+    # TODO: split pass/fail bars into a grouped chart once we have enough
+    #       data per challenge type to make that breakdown meaningful
+    ax.text(
+        0.01, 0.02,
+        "Pass paths and fail paths have different timing profiles. "
+        "Funded-to-payout spread (IQR in source CSV) is the most operationally useful number for cash flow.",
+        transform=ax.transAxes,
+        fontsize=9,
+        color="#333333",
+    )
+    fig.tight_layout()
+    fig.savefig(OUTPUT_DIR / "stage_timing.png", dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
 def write_summary(
     data_frames: dict[str, pd.DataFrame],
 ) -> None:
@@ -472,6 +532,7 @@ def create_analysis_outputs() -> None:
         trader_behavior=data_frames["trader_behavior"],
     )
     create_behavior_outcome_chart(user_outcomes)
+    create_stage_timing_chart(data_frames["stage_timing"])
     write_summary(data_frames)
 
 

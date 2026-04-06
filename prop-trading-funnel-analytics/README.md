@@ -173,7 +173,7 @@ One row per purchasing user.
 
 ### 2. SQL analytics
 
-The `sql/` directory contains six production-style queries:
+The `sql/` directory contains seven production-style queries:
 
 - `01_overall_funnel.sql`
 - `02_funnel_by_acquisition_channel.sql`
@@ -181,12 +181,13 @@ The `sql/` directory contains six production-style queries:
 - `04_funded_payout_analysis.sql`
 - `05_cohort_analysis_by_registration_month.sql`
 - `06_trader_segment_comparison.sql`
+- `07_stage_timing.sql`
 
 These scripts use CTEs and clear naming to build reusable analytical tables in DuckDB.
 
 ### 3. Python reporting
 
-Python in `src/analysis.py` reads the generated outputs and saves six charts to `outputs/`:
+Python in `src/analysis.py` reads the generated outputs and saves seven charts to `outputs/`:
 
 - funnel stage chart
 - conversion by acquisition channel
@@ -194,6 +195,7 @@ Python in `src/analysis.py` reads the generated outputs and saves six charts to 
 - cohort progression heatmap
 - payout exposure by segment
 - trader behavior vs funnel outcomes
+- stage timing (median days between transitions)
 
 ## Key Findings
 
@@ -205,7 +207,7 @@ Python in `src/analysis.py` reads the generated outputs and saves six charts to 
 
 Interpretation: the biggest commercial leak is not evaluation difficulty alone. The platform loses a large share of users before monetization even begins.
 
-### 2. The highest-quality trader channels are not the safest business channels
+### 2. The channels that produce the best traders are not the ones with the best unit economics
 
 Channel comparison:
 
@@ -219,7 +221,7 @@ But the business trade-off flips downstream:
 - `direct` shows **-$26.0k** gross profit proxy.
 - `paid_social` remains positive on the proxy because weak downstream quality suppresses payout liability.
 
-Interpretation: direct and community bring the best traders, but they also generate the heaviest funded-book exposure. A prop firm cannot optimize these channels using registrations or even funded conversion alone.
+The takeaway is uncomfortable: the channels worth protecting for trader quality are also the channels that create the most payout liability. Optimizing on registrations or funded conversion alone would point in the wrong direction.
 
 ![Acquisition Channel Conversion](outputs/conversion_by_acquisition_channel.png)
 
@@ -229,7 +231,7 @@ Interpretation: direct and community bring the best traders, but they also gener
 - It funds only **8.1%** of purchased challenges.
 - Its payout exposure ratio is low because account sizes and downstream quality are both limited.
 
-Interpretation: trials are useful for cheap funnel entry, but they are a weak signal of long-term trader quality.
+Trials generate volume and some fee revenue, but their downstream numbers are weak enough that they should be reported separately from the main challenge product — mixing them into aggregate conversion metrics makes the platform look worse than it is on quality and better than it is on volume.
 
 ### 4. Swing accounts create the clearest liability trade-off
 
@@ -284,7 +286,7 @@ Average behavior by outcome:
 - Approved payout users: **0.60%** risk per trade, **50%** win rate, **1.29** average RR, **0.50** rule violations
 - Phase 1 failures: **0.89%** risk per trade, **42%** win rate, **1.04** average RR, **1.15** rule violations
 
-Interpretation: lower risk sizing, stronger win rate, better RR, and fewer rule breaches show up before the user reaches funded status. These are usable early warning signals.
+The separation between outcome groups is visible early. This matters because it means a risk or support team could flag high-risk behavior in Phase 1 before funding decisions are made — though the overlap between groups means no single metric is a reliable classifier on its own.
 
 ![Behavior vs Outcomes](outputs/behavior_vs_funnel_outcomes.png)
 
@@ -298,6 +300,34 @@ Examples flagged by the segment comparison:
 - `affiliates | advanced`
 
 These segments convert and fund extremely well, but their payout exposure is large enough that they become unattractive on the gross profit proxy.
+
+### 9. Stage timing reveals where friction accumulates — and where fast progression is a flag
+
+Median days between key transitions (see `outputs/stage_timing.csv` for IQR):
+
+- Registration → KYC verified: varies, but the IQR spread is wide — a long tail of slow completions points to friction in the KYC flow itself rather than user disinterest.
+- KYC verified → first purchase: the P75 is notably higher than the median, meaning a meaningful share of verified users take weeks to convert. These are prime candidates for re-engagement nudges.
+- Purchase → Phase 1 outcome: traders who fail do so faster than those who pass. Quick failures are often a risk-sizing problem (breach the drawdown limit early) rather than a skill problem.
+- Phase 1 → Phase 2 outcome: similar pattern — fast failures probably mean the same drawdown issue, not more time exposure.
+- Funded → first payout request: the IQR here is what the finance team cares about most. A wide spread means payout liability is hard to schedule; a tight, short window means the funded book turns over quickly.
+
+Interpretation: timing data complements conversion rates. High conversion at a stage is good; fast failure at a stage is a specific type of signal worth breaking out separately.
+
+## Revenue Impact of Funnel Improvements
+
+Converting drop-off rates into rough dollar terms helps prioritize where effort goes.
+
+**KYC-to-purchase conversion (26.1% of verified users)**
+
+This is the platform's largest addressable gap before any new marketing spend. The current base of 8,566 KYC-verified users already exists — improving purchase conversion by one percentage point yields approximately 86 additional challenge purchases. At the average challenge fee in this dataset (~$250), that is roughly **$21,500 per percentage point improvement**, with zero additional CAC.
+
+A 3-point improvement (26% → 29%) would translate to ~$64,500 in incremental fee revenue from the existing verified base. The first question to answer before acting on this: is the holdout explained by price sensitivity, UX friction at checkout, or users who verified but were never seriously intent on buying?
+
+**KYC start rate (60.5% of registrations)**
+
+39.5% of registrations never begin KYC. A share of that is bots and casual browsers, but improving the start rate from 60.5% to 65% adds roughly 810 additional KYC starters. At the current verified completion rate (~78.7%), that is ~638 additional verified users — who then flow through the purchase funnel at 26.1%, yielding approximately 166 more purchasers and ~$41,500 in fee revenue.
+
+**Note:** these are order-of-magnitude estimates. The actual impact depends on whether drop-off is uniform across channels (it is not — `influencer` and `paid_social` users complete KYC at lower rates). Segmented improvement would have a different cost and different downstream quality profile.
 
 ## Business Recommendations
 

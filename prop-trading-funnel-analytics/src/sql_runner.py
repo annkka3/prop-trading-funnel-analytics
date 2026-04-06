@@ -22,6 +22,7 @@ QUERY_OUTPUTS = {
     "04_funded_payout_analysis.sql": "funded_payout_analysis.csv",
     "05_cohort_analysis_by_registration_month.sql": "cohort_analysis_by_registration_month.csv",
     "06_trader_segment_comparison.sql": "trader_segment_comparison.csv",
+    "07_stage_timing.sql": "stage_timing.csv",
 }
 
 

@@ -31,7 +31,7 @@ It is a common acquisition and monetization product for these platforms. It crea
 
 ### Why use a gross profit proxy instead of full unit economics?
 
-For a portfolio case, I wanted a metric that is simple, interpretable, and directly tied to the main business tension. In a real company I would extend this to include CAC, payment losses, support cost, hedging, and possibly B-book / A-book routing economics.
+Honestly, because I don't have CAC, payment processing fees, support cost, or hedging data — and making those up would undermine the rest of the analysis. The proxy is limited but honest: it captures whether fee revenue covers payout liability, which is the sharpest version of the trade-off I can show with synthetic data. In a real company I would layer in CAC by channel (which would probably make influencers look even worse) and B-book / A-book routing economics if applicable.
 
 ### What would you do next with real production data?
 
@@ -45,18 +45,18 @@ I would add:
 
 That would let me separate gross conversion, net revenue quality, and true economic exposure more precisely.
 
-## 4. Good One-Liners For Discussion
+## 4. Phrases Worth Having Ready
 
-- “The best funded cohorts are not automatically the best business cohorts.”
-- “I treated payout exposure as a first-class KPI, not as a downstream exception.”
-- “Low-cost trials are useful acquisition products, but poor proxies for trader quality.”
-- “The same segments that look strongest to growth can look riskiest to finance.”
+These are the points I keep coming back to when explaining the case:
+
+- The best funded cohorts are not automatically the best business cohorts.
+- I used payout exposure as a primary KPI rather than a footnote — that framing changes most of the conclusions.
+- Low-cost trials inflate top-of-funnel numbers; they should be tracked separately from the core challenge product.
+- Some segments look great to growth and bad to finance at the same time. That tension is the point, not a problem to smooth over.
 
 ## 5. If Asked About The SQL / Engineering Approach
 
-You can say:
-
-- The repo is fully reproducible from a single pipeline entry point.
-- Data generation, SQL, and charting are separated into reusable modules.
-- SQL is intentionally readable and business-facing, with CTEs and stage rollups instead of notebook-only logic.
-- Outputs are materialized so the repo reads like an internal analytics take-home rather than a scratch project.
+- The repo runs end-to-end from a single entry point (`python -m src.pipeline`). Data generation, SQL execution, and charting are in separate modules so any piece can be swapped without touching the others.
+- SQL uses CTEs throughout — partly for readability, partly because breaking a 200-line query into named stages makes it easier to debug when the numbers look wrong.
+- Outputs are written to CSV so the repo can be reviewed without running the pipeline. That matters when sharing with a recruiter who isn't going to set up a DuckDB environment.
+- The notebook is a walkthrough layer on top of the pipeline, not the source of truth. I've found that notebooks-as-primary-code tend to get messy fast once you start iterating.
