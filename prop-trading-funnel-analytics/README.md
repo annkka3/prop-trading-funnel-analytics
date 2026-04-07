@@ -1,5 +1,7 @@
 # prop-trading-funnel-analytics
 
+*Русская версия: [README_RU.md](README_RU.md)*
+
 Portfolio case study for a challenge-based prop trading platform. The project analyzes the full funnel from registration to funded payout and explicitly treats downstream trader quality and payout exposure as core business constraints, not afterthoughts.
 
 This repository is built as a reproducible analytics project rather than a one-off notebook:
